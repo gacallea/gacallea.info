@@ -19,7 +19,18 @@ import Html
         )
 import Html.Attributes as Attr
 import Html.Events exposing (onClick)
-import VitePluginHelper
+import VitePluginHelper exposing (asset)
+
+
+
+-- TYPES
+
+
+type alias Social =
+    { name : String
+    , url : String
+    , icon : Icon WithoutId
+    }
 
 
 
@@ -28,20 +39,20 @@ import VitePluginHelper
 
 pinne : String
 pinne =
-    VitePluginHelper.asset "../img/gacallea.jpg"
+    asset "../img/gacallea.jpg"
 
 
-mysocials : List ( String, Icon WithoutId )
+mysocials : List Social
 mysocials =
-    [ ( "https://twitter.com/thecallea", Icon.twitter )
-    , ( "https://www.linkedin.com/in/gacallea", Icon.linkedin )
-    , ( "https://github.com/gacallea", Icon.github )
-    , ( "https://gitlab.com/gacallea", Icon.gitlab )
-    , ( "https://exercism.org/profiles/gacallea", Icon.code )
-    , ( "https://codepen.io/gacallea", Icon.codepen )
-    , ( "https://gentlewashrecords.com", Icon.recordVinyl )
-    , ( "https://anerandros.info", Icon.playCircle )
-    , ( "https://igghibu.xyz", Icon.images )
+    [ { name = "Twitter", url = "https://twitter.com/thecallea", icon = Icon.twitter }
+    , { name = "LinkedIn", url = "https://www.linkedin.com/in/gacallea", icon = Icon.linkedin }
+    , { name = "Github", url = "https://github.com/gacallea", icon = Icon.github }
+    , { name = "Gitlab", url = "https://gitlab.com/gacallea", icon = Icon.gitlab }
+    , { name = "Exercism", url = "https://exercism.org/profiles/gacallea", icon = Icon.code }
+    , { name = "Codepen", url = "https://codepen.io/gacallea", icon = Icon.codepen }
+    , { name = "Gentle Wash Records", url = "https://gentlewashrecords.com", icon = Icon.recordVinyl }
+    , { name = "Aner Andros", url = "https://anerandros.info", icon = Icon.playCircle }
+    , { name = "Igghibu Zwandir", url = "https://igghibu.xyz", icon = Icon.images }
     ]
 
 
@@ -97,7 +108,7 @@ view : Model -> Html Msg
 view model =
     main_
         [ Aria.label "main content"
-        , Attr.class "flex flex-col justify-center items-center w-full h-full font-sans text-center text-neutral-content bg-info bg-opacity-50"
+        , Attr.class "flex flex-col justify-center items-center w-full h-full font-sans text-center text-neutral-content"
         ]
         [ Icon.css
         , hero model
@@ -117,12 +128,12 @@ hero model =
             [ Attr.class "hero-content min-h-fit "
             ]
             [ div
-                [ Attr.class "max-w-md"
+                [ Attr.class "max-w-lg"
                 ]
                 [ img
-                    [ Aria.label "Elm Logo"
+                    [ Aria.label "Andrea"
                     , Attr.src pinne
-                    , Attr.class "w-80 mx-auto mb-4 bg-neutral-content border-2 border-neutral-content bg-opacity-75 border-opacity-75"
+                    , Attr.class "w-80 mx-auto mb-4 border-2 border-neutral-content border-opacity-75"
                     ]
                     []
                 , h1
@@ -138,16 +149,19 @@ hero model =
 
 socials : Html Msg
 socials =
-    div [ Attr.class "text-2xl" ] <|
+    div [] <|
         List.map
             (\soc ->
                 a
-                    [ Attr.href (Tuple.first soc)
+                    [ Attr.href soc.url
                     , Attr.target "_blank"
                     , Attr.rel "noopener noreferrer"
-                    , Attr.class "p-2"
+                    , Attr.class "btn btn-outline btn-circle m-[0.12rem] text-xl"
+                    , Attr.alt soc.name
+                    , Attr.title soc.name
+                    , Aria.label soc.name
                     ]
-                    [ Icon.view (Tuple.second soc) ]
+                    [ Icon.view soc.icon ]
             )
             mysocials
 
