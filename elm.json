@@ -1,8 +1,6 @@
 {
   "type": "application",
-  "source-directories": [
-    "src/elm"
-  ],
+  "source-directories": ["src/elm"],
   "elm-version": "0.19.1",
   "dependencies": {
     "direct": {
@@ -11,7 +9,7 @@
       "elm/html": "1.0.0",
       "hmsk/elm-vite-plugin-helper": "1.0.1",
       "lattyware/elm-fontawesome": "6.0.0",
-      "tesk9/accessible-html": "5.0.0"
+      "tesk9/accessible-html": "5.1.0"
     },
     "indirect": {
       "elm/json": "1.1.3",
