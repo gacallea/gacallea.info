@@ -156,7 +156,7 @@ socials =
                     [ Attr.href soc.url
                     , Attr.target "_blank"
                     , Attr.rel "noopener noreferrer"
-                    , Attr.class "btn btn-outline btn-circle m-[0.12rem] text-xl"
+                    , Attr.class "btn btn-outline btn-circle m-[0.12rem] text-xl text-neutral-content hover:bg-neutral-content hover:text-neutral"
                     , Attr.alt soc.name
                     , Attr.title soc.name
                     , Aria.label soc.name
